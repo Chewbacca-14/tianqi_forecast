@@ -2,22 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_button.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_text_field.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class AuthScreen extends StatefulWidget {
+  const AuthScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<AuthScreen> createState() => _AuthScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _AuthScreenState extends State<AuthScreen> {
   bool isLogin = true;
+
   final emailAddressController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
   void changeScreen() {
+    if (!mounted) return;
     setState(() {
-      isLogin == true ? isLogin = false : isLogin = true;
+      isLogin = !isLogin;
     });
   }
 
@@ -26,12 +28,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Color(0xFF121820),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 40.0),
+              padding: const EdgeInsets.only(top: 40),
               child: Container(
                 width: 76,
                 height: 64,
@@ -147,10 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
-                    changeScreen();
-                  },
-
+                  onPressed: changeScreen,
                   child: Text(
                     isLogin == true ? "Sign up" : "Log in",
                     style: TextStyle(
