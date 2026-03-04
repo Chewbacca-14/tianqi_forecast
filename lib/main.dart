@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tianqi_forecast/core/ui/screens/auth_screen.dart';
-import 'package:tianqi_forecast/core/ui/screens/home_screen.dart';
 
 void main() {
   runApp(const MainApp());
