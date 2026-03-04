@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tianqi_forecast/core/ui/screens/home_screen.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_button.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_text_field.dart';
 
@@ -82,7 +83,15 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             SizedBox(height: 8),
             CustomTextField(
+              decoration: BoxDecoration(
+                color: Color(0xFF0F172A).withAlpha(80),
+                border: BoxBorder.all(
+                  color: Color(0xFF1E293B),
+                ),
+                borderRadius: BorderRadius.circular(24),
+              ),
               controller: emailAddressController,
+              height: 56,
               hintText: "name@example.com",
             ),
             SizedBox(height: 16),
@@ -100,7 +109,15 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             SizedBox(height: 8),
             CustomTextField(
+              decoration: BoxDecoration(
+                color: Color(0xFF0F172A).withAlpha(80),
+                border: BoxBorder.all(
+                  color: Color(0xFF1E293B),
+                ),
+                borderRadius: BorderRadius.circular(24),
+              ),
               controller: passwordController,
+              height: 56,
               hintText: isLogin == true ? "Password" : "Create a password",
               obscure: true,
             ),
@@ -108,6 +125,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ? SizedBox.shrink()
                 : Column(
                     children: [
+                      SizedBox(height: 8),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -122,7 +140,15 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       SizedBox(height: 8),
                       CustomTextField(
+                        decoration: BoxDecoration(
+                          color: Color(0xFF0F172A).withAlpha(80),
+                          border: BoxBorder.all(
+                            color: Color(0xFF1E293B),
+                          ),
+                          borderRadius: BorderRadius.circular(24),
+                        ),
                         controller: confirmPasswordController,
+                        height: 56,
                         hintText: "Repeat your password",
                         obscure: true,
                       ),
@@ -130,6 +156,14 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
             SizedBox(height: 40),
             CustomButton(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
+              },
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Color(0xFFFFFFFF),

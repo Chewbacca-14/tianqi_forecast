@@ -3,15 +3,21 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatefulWidget {
   final String? labelText;
   final TextEditingController controller;
+  final double height;
   final bool obscure;
   final String? hintText;
+  final Widget? prefixIcon;
+  final Decoration decoration;
 
   const CustomTextField({
     required this.controller,
+    required this.height,
     super.key,
     this.obscure = false,
     this.labelText,
     this.hintText,
+    this.prefixIcon,
+    required this.decoration,
   });
 
   @override
@@ -40,24 +46,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 56,
+      height: widget.height,
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: Color(0xFF0F172A).withAlpha(80),
-        border: BoxBorder.all(
-          color: Color(0xFF1E293B),
-        ),
-        borderRadius: BorderRadius.circular(24),
-      ),
-
+      decoration: widget.decoration,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 17,
-          vertical: 17,
+
         ),
         child: TextFormField(
           controller: widget.controller,
           obscureText: obscureText,
+
           style: TextStyle(
             color: Color(0xFFFFFFFF),
             fontSize: 16,
@@ -66,6 +66,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
           decoration: InputDecoration(
             border: InputBorder.none,
+            prefixIcon: widget.prefixIcon,
             suffixIcon: obscureText
                 ? IconButton(
                     icon: Icon(
@@ -78,11 +79,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         obscureText = !obscureText;
                       });
                     },
-                    padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
+
                   )
                 : null,
+            suffixIconConstraints: BoxConstraints(),
             hintText: widget.hintText,
+
+            constraints: BoxConstraints(),
             hintStyle: TextStyle(
               color: Color(0xFF475569),
               fontSize: 16,
