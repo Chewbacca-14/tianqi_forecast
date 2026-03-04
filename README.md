@@ -1,3 +1,2 @@
-# tianqi_forecast
-
-A new Flutter project.
+1. CustomTextField - remove isPassword, make just isObscure
+2. 

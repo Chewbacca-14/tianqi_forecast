@@ -100,38 +100,38 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomTextField(
               controller: passwordController,
               hintText: isLogin == true ? "Password" : "Create a password",
-              isPassword: true,
+              obscure: true,
             ),
             isLogin == true
                 ? SizedBox.shrink()
                 : Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Confirm password",
-                    style: TextStyle(
-                      color: Color(0xFFCBD5E1),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.start,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Confirm password",
+                          style: TextStyle(
+                            color: Color(0xFFCBD5E1),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      CustomTextField(
+                        controller: confirmPasswordController,
+                        hintText: "Repeat your password",
+                        obscure: true,
+                      ),
+                    ],
                   ),
-                ),
-                SizedBox(height: 8),
-                CustomTextField(
-                  controller: confirmPasswordController,
-                  hintText: "Repeat your password",
-                  isPassword: true,
-                ),
-              ],
-            ),
             SizedBox(height: 40),
             CustomButton(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Color(0xFFFFFFFF),
-              label: isLogin ==true? "Login":"Create account",
+              label: isLogin == true ? "Login" : "Create account",
             ),
 
             SizedBox(height: 47),
@@ -139,8 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  isLogin ==true?
-                  "Don’t have an account?":"Already have an account? ",
+                  isLogin == true ? "Don’t have an account?" : "Already have an account? ",
                   style: TextStyle(
                     color: Color(0xFF94A3B8),
                     fontWeight: FontWeight.w400,
@@ -153,8 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
 
                   child: Text(
-                    isLogin==true?
-                    "Sign up":"Log in",
+                    isLogin == true ? "Sign up" : "Log in",
                     style: TextStyle(
                       color: Color(0xFF4B91E2),
                       fontWeight: FontWeight.w700,
