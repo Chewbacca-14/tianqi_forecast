@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:tianqi_forecast/core/ui/screens/weather_screen.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_text_field.dart';
-import 'package:tianqi_forecast/core/ui/widgets/weather_card.dart';
+import 'package:tianqi_forecast/core/ui/widgets/weather/weather_card.dart';
+import 'package:tianqi_forecast/models/weather.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final searchController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 24,
             ),
             WeatherCard(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                    WeatherScreen(city: "Prague",
+                        temperature: 72,
+                        weatherAnnotation: "Clear",
+                        weatherIcon: Icons.sunny,
+                    )));
+              },
               city: "Prague",
               weatherAnnotation: "Clear",
               weatherIcon: Icon(
