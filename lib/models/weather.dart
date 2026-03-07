@@ -83,4 +83,5 @@ class Weather {
     humidity.hashCode ^
     weatherAnnotation.hashCode;
   }
+
 }

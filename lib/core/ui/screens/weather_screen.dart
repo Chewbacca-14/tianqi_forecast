@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tianqi_forecast/core/extentions/weather_icon_extention.dart';
 import 'package:tianqi_forecast/core/ui/widgets/weather/weather_annotations.dart';
-
+import 'package:tianqi_forecast/models/weather.dart';
 
 class WeatherScreen extends StatelessWidget {
-  final String city;
-  final int temperature;
-  final String weatherAnnotation;
-  final IconData weatherIcon;
+  final Weather weather;
 
   const WeatherScreen({
     super.key,
-    required this.city,
-    required this.temperature,
-    required this.weatherAnnotation,
-    required this.weatherIcon,
+    required this.weather,
   });
 
   @override
@@ -35,8 +30,12 @@ class WeatherScreen extends StatelessWidget {
               color: Color(0xFF1E293B).withAlpha(127),
             ),
             child: IconButton(
-              onPressed: (){Navigator.pop(context);},
-              icon: Icon(Icons.arrow_back,),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+              ),
               color: Color(0xFFFFFFFF),
             ),
           ),
@@ -45,7 +44,7 @@ class WeatherScreen extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                city,
+                weather.city,
                 style: TextStyle(
                   color: Color(0xFFF1F5F9),
                   fontSize: 18,
@@ -64,7 +63,11 @@ class WeatherScreen extends StatelessWidget {
             ],
           ),
         ),
-        actions: [SizedBox(width: 48,)],
+        actions: [
+          SizedBox(
+            width: 48,
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
@@ -72,7 +75,7 @@ class WeatherScreen extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                " $temperature°",
+                " ${weather.temp}°",
                 style: TextStyle(
                   color: Color(0xFFFFFFFF),
                   fontWeight: FontWeight.w800,
@@ -80,7 +83,7 @@ class WeatherScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                weatherAnnotation.toUpperCase(),
+                weather.weatherAnnotation.toUpperCase(),
                 style: TextStyle(
                   letterSpacing: 4,
                   color: Color(0xFF4B91E2),
@@ -102,7 +105,7 @@ class WeatherScreen extends StatelessWidget {
                   ),
                 ),
                 child: Icon(
-                  weatherIcon,
+                 weather.iconPath.weatherIcon,
                   size: 88,
                   color: Color(0xFF4B91E2),
                 ),
@@ -112,14 +115,16 @@ class WeatherScreen extends StatelessWidget {
               ),
               WeatherAnnotations(
                 name: "HUMIDITY",
-                value: '64%',
+                value: "${weather.humidity}%",
                 icon: Icons.water_drop,
                 trend: Icons.trending_up,
               ),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               WeatherAnnotations(
                 name: "WIND SPEED",
-                value: '12 km/h',
+                value: "${weather.windSpeed} km/h",
                 icon: Icons.air,
                 trend: Icons.trending_flat,
               ),

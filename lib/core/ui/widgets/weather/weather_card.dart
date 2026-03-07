@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tianqi_forecast/core/extentions/weather_icon_extention.dart';
+import 'package:tianqi_forecast/models/weather.dart';
 
 class WeatherCard extends StatefulWidget {
-  final String city;
-  final String weatherAnnotation;
-  final Widget weatherIcon;
-  final int temperature;
+  final Weather weather;
   final void Function()? onTap;
 
   const WeatherCard({
     super.key,
-    required this.city,
-    required this.weatherIcon,
-    required this.weatherAnnotation,
-    required this.temperature,
+    required this.weather,
     this.onTap,
   });
 
@@ -52,7 +48,7 @@ class _WeatherCardState extends State<WeatherCard> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    widget.city,
+                    widget.weather.city,
                     style: TextStyle(
                       color: Color(0xFFF1F5F9),
                       fontSize: 20,
@@ -61,9 +57,11 @@ class _WeatherCardState extends State<WeatherCard> {
                   ),
                   Row(
                     children: [
-                      widget.weatherIcon,
+                      Icon(
+                      widget.weather.iconPath.weatherIcon,
+                      color: widget.weather.iconPath.weatherIconColor),
                       Text(
-                        widget.weatherAnnotation,
+                        widget.weather.weatherAnnotation,
                         style: TextStyle(
                           color: Color(0xFF94A3B8),
                           fontWeight: FontWeight.w400,
@@ -78,7 +76,7 @@ class _WeatherCardState extends State<WeatherCard> {
                 ],
               ),
               Text(
-                "${widget.temperature} °",
+                "${widget.weather.temp} °",
                 style: TextStyle(
                   color: Color(0xFFF1F5F9),
                   fontSize: 48,

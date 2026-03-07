@@ -4,7 +4,8 @@ import 'package:tianqi_forecast/core/ui/screens/weather_screen.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_text_field.dart';
 import 'package:tianqi_forecast/core/ui/widgets/weather/weather_card.dart';
-
+import 'package:tianqi_forecast/models/weather.dart';
+import 'package:tianqi_forecast/models/weather_enum.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final searchController = TextEditingController();
-
+  final List<Weather> weatherEnum = WeatherEnum.getAllWeatherModels();
 
   @override
   Widget build(BuildContext context) {
@@ -52,24 +53,27 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(
-              height: 24,
+              height: 16,
             ),
-            WeatherCard(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                    WeatherScreen(city: "Prague",
-                        temperature: 72,
-                        weatherAnnotation: "Clear",
-                        weatherIcon: Icons.sunny,
-                    )));
-              },
-              city: "Prague",
-              weatherAnnotation: "Clear",
-              weatherIcon: Icon(
-                Icons.sunny,
-                color: Color(0xFFFBBF24),
+            Expanded(
+              child: ListView.builder(
+                itemCount: weatherEnum.length,
+                itemBuilder: (context, index) {
+                  final weather = weatherEnum[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: WeatherCard(
+                      weather: weather,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => WeatherScreen(weather: weather)),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
-              temperature: 72,
             ),
           ],
         ),
