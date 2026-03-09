@@ -53,20 +53,20 @@ extension WeatherIconExtension on String {
   Color get weatherBackgroundColor {
     switch (this) {
       case 'sunny':
-        return Colors.amber.withOpacity(0.1);
+        return Colors.amber.withAlpha(26);
       case 'partly_cloudy':
-        return Colors.orange.withOpacity(0.1);
+        return Colors.orange.withAlpha(26);
       case 'cloudy':
-        return Colors.grey.withOpacity(0.1);
+        return Colors.grey.withAlpha(26);
       case 'rain':
       case 'heavy_rain':
-        return Colors.blue.withOpacity(0.1);
+        return Colors.blue.withAlpha(26);
       case 'snow':
-        return Colors.lightBlue.withOpacity(0.1);
+        return Colors.lightBlue.withAlpha(26);
       case 'thunderstorm':
-        return Colors.deepPurple.withOpacity(0.1);
+        return Colors.deepPurple.withAlpha(26);
       default:
-        return Colors.grey.withOpacity(0.1);
+        return Colors.grey.withAlpha(26);
     }
   }
 }

@@ -50,42 +50,44 @@ class _CustomTextFieldState extends State<CustomTextField> {
       width: double.infinity,
       decoration: widget.decoration,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 17,
-
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: TextFormField(
           controller: widget.controller,
           obscureText: obscureText,
-
+          cursorColor: Colors.white,
+          textAlignVertical: TextAlignVertical.center,
           style: TextStyle(
             color: Color(0xFFFFFFFF),
             fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
-
           decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: widget.prefixIcon,
-            suffixIcon: obscureText
+            contentPadding: const EdgeInsets.symmetric(vertical: 16),
+            prefixIconConstraints: const BoxConstraints(
+              minHeight: 44,
+              minWidth: 44,
+            ),
+            suffixIcon: widget.obscure
                 ? IconButton(
                     icon: Icon(
                       obscureText ? Icons.visibility_off : Icons.visibility,
                       color: Color(0xFF94A3B8),
                       size: 22,
                     ),
-                    onPressed: () async {
+                    onPressed: () {
                       setState(() {
                         obscureText = !obscureText;
                       });
                     },
-
                   )
                 : null,
-            suffixIconConstraints: BoxConstraints(),
+            suffixIconConstraints: const BoxConstraints(
+              minHeight: 44,
+              minWidth: 44,
+            ),
             hintText: widget.hintText,
-
-            constraints: BoxConstraints(),
             hintStyle: TextStyle(
               color: Color(0xFF475569),
               fontSize: 16,
