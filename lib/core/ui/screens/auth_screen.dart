@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tianqi_forecast/core/ui/screens/home_screen.dart';
+import 'package:tianqi_forecast/core/ui/screens/tap_bar_screen.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_button.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_text_field.dart';
 
@@ -160,7 +161,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
+                    builder: (context) => TapBarScreen(),
                   ),
                 );
               },

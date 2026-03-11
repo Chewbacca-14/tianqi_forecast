@@ -38,14 +38,14 @@ class _WeatherCardState extends State<WeatherCard> {
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "Current location".toUpperCase(),
-                    style: TextStyle(
-                      color: Color(0xFF4B91E2),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  // Text(
+                  //   "Current location".toUpperCase(),
+                  //   style: TextStyle(
+                  //     color: Color(0xFF4B91E2),
+                  //     fontSize: 12,
+                  //     fontWeight: FontWeight.w600,
+                  //   ),
+                  // ),
                   SizedBox(height: 4),
                   Text(
                     widget.weather.city,

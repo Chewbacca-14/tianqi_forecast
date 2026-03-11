@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:tianqi_forecast/core/ui/screens/weather_screen.dart';
-import 'package:tianqi_forecast/core/ui/widgets/custom_bottom_navigation_bar.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_text_field.dart';
 import 'package:tianqi_forecast/core/ui/widgets/weather/weather_card.dart';
 import 'package:tianqi_forecast/models/weather.dart';
-import 'package:tianqi_forecast/models/weather_enum.dart';
+import 'package:tianqi_forecast/core/services/weather_server.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,8 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   final searchController = TextEditingController();
-  final List<Weather> weatherEnum = WeatherEnum.getAllWeatherModels();
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: weatherEnum.length,
+                itemCount: weatherList.length,
                 itemBuilder: (context, index) {
-                  final weather = weatherEnum[index];
+                  final weather = weatherList[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16),
                     child: WeatherCard(
@@ -78,7 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }
