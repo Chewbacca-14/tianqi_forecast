@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tianqi_forecast/core/ui/screens/home_screen.dart';
+
 import 'package:tianqi_forecast/core/ui/screens/tap_bar_screen.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_button.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_text_field.dart';
@@ -165,7 +165,6 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 );
               },
-              fontSize: 16,
               fontWeight: FontWeight.w700,
               color: Color(0xFFFFFFFF),
               label: isLogin == true ? "Login" : "Create account",

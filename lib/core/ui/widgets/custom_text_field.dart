@@ -8,6 +8,8 @@ class CustomTextField extends StatefulWidget {
   final String? hintText;
   final Widget? prefixIcon;
   final Decoration decoration;
+  final void Function(String)? onChanged;
+  final void Function()? onEditingComplete;
 
   const CustomTextField({
     required this.controller,
@@ -18,6 +20,7 @@ class CustomTextField extends StatefulWidget {
     this.hintText,
     this.prefixIcon,
     required this.decoration,
+    this.onChanged, this.onEditingComplete,
   });
 
   @override
@@ -55,6 +58,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
         ),
         child: TextFormField(
+          onChanged: widget.onChanged,
           controller: widget.controller,
           obscureText: obscureText,
 

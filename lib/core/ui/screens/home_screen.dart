@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:tianqi_forecast/core/providers/cities_provider.dart';
+
 import 'package:tianqi_forecast/core/ui/screens/weather_screen.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_text_field.dart';
-import 'package:tianqi_forecast/core/ui/widgets/weather/weather_card.dart';
-import 'package:tianqi_forecast/models/weather.dart';
-import 'package:tianqi_forecast/core/services/weather_server.dart';
-
+import 'package:tianqi_forecast/core/ui/widgets/weather/city_card.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,12 +14,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   final searchController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
+    final citiesProvider = context.watch<CitiesProvider>();
+
+
     return Scaffold(
       backgroundColor: Color(0xFF121820),
       body: Padding(
@@ -52,23 +52,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.search,
                 color: Color(0xFF94A3B8),
               ),
+              onChanged: (String query) => citiesProvider.searchCity(query),
             ),
             SizedBox(
               height: 16,
             ),
             Expanded(
+
               child: ListView.builder(
-                itemCount: weatherList.length,
+                itemCount: citiesProvider.city.length,
                 itemBuilder: (context, index) {
-                  final weather = weatherList[index];
+                  final city = citiesProvider.city[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16),
-                    child: WeatherCard(
-                      weather: weather,
+                    child: CityCard(
+                      city: city,
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => WeatherScreen(weather: weather)),
+                          MaterialPageRoute(builder: (context) => WeatherScreen(city: city)),
                         );
                       },
                     ),

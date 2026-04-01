@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  final double fontSize;
+
   final FontWeight fontWeight;
   final Color color;
   final String label;
@@ -9,7 +9,6 @@ class CustomButton extends StatelessWidget {
 
   const CustomButton({
     super.key,
-    required this.fontSize,
     required this.fontWeight,
     required this.color,
     required this.label,
@@ -18,13 +17,14 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF4B91E2), ),
+      onPressed: onTap,
       child: Container(
         height: 56,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFF4B91E2),
+          // color: Color(0xFF4B91E2),
           borderRadius: BorderRadius.circular(24),
         ),
         child: Center(
@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
             label,
             style: TextStyle(
               color: color,
-              fontSize: fontSize,
+              fontSize: 16,
               fontWeight: fontWeight,
             ),
           ),

@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:tianqi_forecast/models/city.dart';
 
 
-class WeatherCard extends StatefulWidget {
+class CityCard extends StatefulWidget {
   final City city;
   final void Function()? onTap;
 
-  const WeatherCard({
+  const CityCard({
     super.key,
     required this.city,
     this.onTap,
   });
 
   @override
-  State<WeatherCard> createState() => _WeatherCardState();
+  State<CityCard> createState() => _WeatherCardState();
 }
 
-class _WeatherCardState extends State<WeatherCard> {
+class _WeatherCardState extends State<CityCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

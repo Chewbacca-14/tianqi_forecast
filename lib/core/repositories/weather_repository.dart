@@ -1,26 +1,25 @@
 import 'package:tianqi_forecast/core/services/api/weather_api_service.dart';
-import 'package:tianqi_forecast/models/weather.dart';
+import 'package:tianqi_forecast/models/city.dart';
+import 'package:tianqi_forecast/models/weather_model.dart';
 
 class WeatherRepository {
   final WeatherApiService apiService;
 
   WeatherRepository({required this.apiService});
 
-  Future<List<Weather>> searchCity(String query, {int count = 10}) async {
+  Future<List<City>> searchCity(String query, {int count = 10}) async {
     final res = await apiService.searchCity(query, count: count);
-    return (res['results'] as List<dynamic>).map((e) => Weather.fromJson(e)).toList();
+    return (res['results'] as List<dynamic>).map((e) => City.fromJson(e)).toList();
   }
 
-  Future<Weather> fetchForecast({
+  Future<WeatherModel> fetchForecast({
     required double lat,
     required double lon,
-    bool currentWeather = true,
   }) async {
     final res = await apiService.fetchForecast(
       lat: lat,
       lon: lon,
-      currentWeather: currentWeather,
     );
-    return Weather.fromJson(res);
+    return WeatherModel.fromJson(res);
   }
 }

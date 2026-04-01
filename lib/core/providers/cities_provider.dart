@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tianqi_forecast/core/repositories/weather_repository.dart';
-import 'package:tianqi_forecast/models/weather.dart';
+import 'package:tianqi_forecast/models/city.dart';
 
-class CitySearchProvider extends ChangeNotifier {
+class CitiesProvider extends ChangeNotifier {
   final WeatherRepository repository;
-  CitySearchProvider({required this.repository});
 
-  List<Weather> suggestions = [];
+  CitiesProvider({required this.repository});
+
+  List<City> city = [];
+  City? selectedCity;
 
   bool isLoading = false;
 
@@ -18,13 +20,22 @@ class CitySearchProvider extends ChangeNotifier {
       error = null;
       notifyListeners();
 
-      suggestions = await repository.searchCity(query, count: count);
+      city = await repository.searchCity(query, count: count);
+      print(city);
     } catch (e) {
-      suggestions.clear();
+      city.clear();
       error = e.toString();
+      print(e);
     }
 
     isLoading = false;
     notifyListeners();
   }
+  void selectCity(City city) {
+    selectedCity = city;
+    notifyListeners();
+  }
+
+
 }
+

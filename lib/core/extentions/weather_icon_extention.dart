@@ -2,10 +2,9 @@
 import 'package:flutter/material.dart';
 
 extension WeatherIconExtension on String {
-  // Получить иконку по строковому пути
   IconData get weatherIcon {
     switch (this) {
-      case 'sunny':
+      case "sunny":
         return Icons.wb_sunny;
       case 'partly_cloudy':
         return Icons.cloud_queue;
@@ -53,20 +52,20 @@ extension WeatherIconExtension on String {
   Color get weatherBackgroundColor {
     switch (this) {
       case 'sunny':
-        return Colors.amber.withOpacity(0.1);
+        return Colors.amber;
       case 'partly_cloudy':
-        return Colors.orange.withOpacity(0.1);
+        return Colors.orange;
       case 'cloudy':
-        return Colors.grey.withOpacity(0.1);
+        return Colors.grey;
       case 'rain':
       case 'heavy_rain':
-        return Colors.blue.withOpacity(0.1);
+        return Colors.blue;
       case 'snow':
-        return Colors.lightBlue.withOpacity(0.1);
+        return Colors.lightBlue;
       case 'thunderstorm':
-        return Colors.deepPurple.withOpacity(0.1);
+        return Colors.deepPurple;
       default:
-        return Colors.grey.withOpacity(0.1);
+        return Colors.grey;
     }
   }
 }

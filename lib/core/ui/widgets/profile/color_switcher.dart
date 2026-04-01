@@ -7,12 +7,12 @@ class CompactColorSwitch extends StatefulWidget {
   final ValueChanged<bool>? onChanged;
 
   const CompactColorSwitch({
-    Key? key,
+    super.key,
     this.initialValue = false,
     required this.lightColor,
     required this.darkColor ,
     this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<CompactColorSwitch> createState() => _CompactColorSwitchState();
@@ -37,13 +37,13 @@ class _CompactColorSwitchState extends State<CompactColorSwitch> {
           end: Alignment.bottomRight,
           colors: [
             _isDark ? widget.darkColor : widget.lightColor,
-            (_isDark ? widget.darkColor : widget.lightColor).withOpacity(0.7),
+            (_isDark ? widget.darkColor : widget.lightColor),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black,
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -82,7 +82,7 @@ class _CompactColorSwitchState extends State<CompactColorSwitch> {
                 widget.onChanged?.call(_isDark);
               });
             },
-            activeColor: Colors.white,
+            activeThumbColor: Colors.white,
             activeTrackColor: Colors.blue,
             inactiveThumbColor: Colors.blue,
             inactiveTrackColor: Colors.grey[300],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tianqi_forecast/core/ui/screens/home_screen.dart';
 import 'package:tianqi_forecast/core/ui/screens/profile_screen.dart';
-import 'package:tianqi_forecast/core/ui/screens/weather_screen.dart';
 import 'package:tianqi_forecast/core/ui/widgets/custom_bottom_navigation_bar.dart';
 
 class TapBarScreen extends StatefulWidget {
