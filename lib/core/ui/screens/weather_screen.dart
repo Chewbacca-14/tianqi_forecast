@@ -7,8 +7,6 @@ import 'package:tianqi_forecast/core/ui/widgets/weather/weather_annotations.dart
 
 import 'package:tianqi_forecast/models/city.dart';
 
-
-
 class WeatherScreen extends StatefulWidget {
   final City city;
 
@@ -21,25 +19,16 @@ class WeatherScreen extends StatefulWidget {
   State<WeatherScreen> createState() => _WeatherScreenState();
 }
 
-
 class _WeatherScreenState extends State<WeatherScreen> {
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (!mounted) return;
-
       final forecastProvider = Provider.of<ForecastProvider>(context, listen: false);
       try {
-        await forecastProvider.fetchForecast(
-            lat: widget.city.latitude,
-            lon: widget.city.longitude
-        );
+        await forecastProvider.fetchForecast(lat: widget.city.latitude, lon: widget.city.longitude);
 
-        if (mounted) {
-          print("СМОТРИИИИ СЮДА ===> ${forecastProvider.suggestion}");
-        }
+        print("СМОТРИИИИ СЮДА ===> ${forecastProvider.suggestion}");
       } catch (e) {
         if (mounted) {
           print("Ошибка загрузки: $e");
@@ -50,7 +39,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final forecastProvider= context.watch<ForecastProvider>();
+    final forecastProvider = context.watch<ForecastProvider>();
     // forecastProvider.fetchForecast(lat:widget.city.latitude, lon:widget.city.longitude);
 
     return Scaffold(
@@ -114,27 +103,27 @@ class _WeatherScreenState extends State<WeatherScreen> {
           child: Center(
             child: Column(
               children: [
+                if (forecastProvider.error != null) ...[
+                  Text(forecastProvider.error!),
+                ],
                 Align(
                   alignment: Alignment(0.2, 0),
                   child: Text(
-                    // "${forecastProvider.suggestion?.current.temperature2m}°",
                     "",
                     style: TextStyle(
                       color: Color(0xFFFFFFFF),
                       fontWeight: FontWeight.w800,
                       fontSize: 120,
                     ),
-
                   ),
                 ),
                 Text(
-                  "WeatherIconMapper.getWeatherDescription(forecastProvider.suggestion!.current.weatherCode)"
-                      .toUpperCase(),
+                  "${forecastProvider.suggestion?.currentWeather?.temperature} °C",
                   style: TextStyle(
                     letterSpacing: 4,
                     color: Color(0xFF4B91E2),
                     fontWeight: FontWeight.w700,
-                    fontSize: 20,
+                    fontSize: 46,
                   ),
                 ),
                 SizedBox(

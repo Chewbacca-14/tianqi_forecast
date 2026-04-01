@@ -22,7 +22,7 @@ class ForecastProvider extends ChangeNotifier {
       notifyListeners();
 
       suggestion = await repository.fetchForecast(lat: lat, lon: lon);
-      print(suggestion);
+      print('СМОТРИИИИ СЮДА ===> 2 ${suggestion}');
     } catch (e) {
       error = e.toString();
       print(e);

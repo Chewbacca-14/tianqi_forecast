@@ -43,31 +43,37 @@ class WeatherAnnotations extends StatelessWidget {
           SizedBox(
             width: 16,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name.toUpperCase(),
-                style: TextStyle(
-                  color: Color(0xFF94A3B8),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name.toUpperCase(),
+                  style: TextStyle(
+                    color: Color(0xFF94A3B8),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              Text(
-                value,
-                style: TextStyle(
-                  color: Color(0xFFF1F5F9),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
+                Text(
+                  value,
+                  style: TextStyle(
+                    color: Color(0xFFF1F5F9),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          Spacer(),
-          Icon(
-            trend,
-            color: Color(0xFF94A3B8),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Icon(
+              trend,
+              color: Color(0xFF94A3B8),
+            ),
           ),
         ],
       ),

@@ -20,6 +20,7 @@ class WeatherRepository {
       lat: lat,
       lon: lon,
     );
+    print(res);
     return WeatherModel.fromJson(res);
   }
 }
